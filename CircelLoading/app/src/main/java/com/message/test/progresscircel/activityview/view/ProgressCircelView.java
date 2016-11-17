@@ -228,6 +228,17 @@ public class ProgressCircelView extends View {
         return (float) (getRouteNumber() * length / 2 * distances + paintWith);
     }
 
+
+    /**
+     * 获取画笔的宽度
+     *
+     * @return
+     */
+    private float getPaintWidth() {
+        //画笔的初始大小为30，变化范围为15
+        return (float) (getRouteNumber() * 60 + 30);
+    }
+
     /**
      * 获取旋转系数
      * <p>
@@ -239,13 +250,5 @@ public class ProgressCircelView extends View {
         return (float) ((1.0 + Math.sin(Math.PI * routeDegree / 180))) / 2;
     }
 
-    /**
-     * 获取画笔的宽度
-     *
-     * @return
-     */
-    private float getPaintWidth() {
-        //画笔的初始大小为30，变化范围为15
-        return (float) (getRouteNumber() * 60 + 30);
-    }
+
 }
