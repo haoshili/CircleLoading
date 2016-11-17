@@ -174,20 +174,10 @@ public class ProgressCircelView extends View {
         for (int i = 0; i < count; i++) {
             setPaintColour(i);
             canvas.drawArc(getReact(), routeDegree + i * (360 / count), getDrawDegree(), false, paint);
-
-            drawCircelPoint(canvas);
         }
 
     }
 
-    /**
-     * 绘制线条两边的圆角
-     */
-    private void drawCircelPoint(Canvas canvas) {
-        withdPoint = Math.cos(Math.PI * routeDegree / 180) * getRouteNumber() * length * Math.sqrt(2) / 4;
-        heightPoint = Math.cos(Math.PI * routeDegree / 180) * getRouteNumber() * length * Math.sqrt(2) / 4;
-        canvas.drawCircle((float) (width / 2 + withdPoint), (float) (height / 2 + heightPoint), paintWith / 2, paint);
-    }
 
     /**
      * 设置圆弧的颜色

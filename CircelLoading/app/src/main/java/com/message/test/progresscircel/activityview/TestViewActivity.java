@@ -19,7 +19,10 @@ public class TestViewActivity extends Activity {
         setContentView(R.layout.activity_view);
 
         ProgressCircelView progressCircelView = (ProgressCircelView) findViewById(R.id.loading);
-
         progressCircelView.beginRoute();
+
+        ProgressCircelView progressCircelView2= (ProgressCircelView) findViewById(R.id.loading2);
+        progressCircelView2.setCount(2);
+        progressCircelView2.beginRoute();
     }
 }
