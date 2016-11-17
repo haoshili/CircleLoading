@@ -1,9 +1,10 @@
-package com.message.test.myapplication.activityview;
+package com.message.test.progresscircel.activityview;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.message.test.myapplication.R;
+import com.message.test.progresscircel.R;
+import com.message.test.progresscircel.activityview.view.ProgressCircelView;
 
 /**
  * Created by shengjunhao on 16/11/14.

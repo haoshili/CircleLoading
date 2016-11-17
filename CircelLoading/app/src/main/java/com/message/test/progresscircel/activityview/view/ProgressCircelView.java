@@ -1,4 +1,4 @@
-package com.message.test.myapplication.activityview;
+package com.message.test.progresscircel.activityview.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -19,7 +19,9 @@ import android.view.View;
 public class ProgressCircelView extends View {
 
     private Paint paint;
+    private Paint paintPoint;
     private RectF rectF;
+    private int[] colors = {0xffff6766, 0xff79bef8, 0xffa3a3a3};
 
     /**
      * 宽
@@ -75,6 +77,8 @@ public class ProgressCircelView extends View {
             handler.sendEmptyMessageDelayed(0, 10);
         }
     };
+    private double withdPoint;
+    private double heightPoint;
 
     public ProgressCircelView(Context context) {
         super(context);
@@ -114,6 +118,8 @@ public class ProgressCircelView extends View {
         this.degree = degree;
     }
 
+
+
     /**
      * 设置前进比例
      *
@@ -150,7 +156,8 @@ public class ProgressCircelView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         paint.setColor(Color.BLACK);
-        paint.setStrokeWidth((float) (1.0 + Math.sin(Math.PI * routeDegree / 180 / 1.5)*15+30));
+        paint.setStrokeWidth(getPaintWidth());
+
     }
 
 
@@ -161,10 +168,36 @@ public class ProgressCircelView extends View {
      */
     private void drawLine(Canvas canvas) {
 
+        //旋转
+        getRouteDegree();
+
         for (int i = 0; i < count; i++) {
-            canvas.drawArc(getReact(), getRouteDegree() + i * (360 / count), getDrawDegree(), false, paint);
+            setPaintColour(i);
+            canvas.drawArc(getReact(), routeDegree + i * (360 / count), getDrawDegree(), false, paint);
+
+            drawCircelPoint(canvas);
         }
 
+    }
+
+    /**
+     * 绘制线条两边的圆角
+     */
+    private void drawCircelPoint(Canvas canvas) {
+        withdPoint = Math.cos(Math.PI * routeDegree / 180) * getRouteNumber() * length * Math.sqrt(2) / 4;
+        heightPoint = Math.cos(Math.PI * routeDegree / 180) * getRouteNumber() * length * Math.sqrt(2) / 4;
+        canvas.drawCircle((float) (width / 2 + withdPoint), (float) (height / 2 + heightPoint), paintWith / 2, paint);
+    }
+
+    /**
+     * 设置圆弧的颜色
+     *
+     * @param i
+     * @return
+     */
+    private Paint setPaintColour(int i) {
+        paint.setColor(colors[i % colors.length]);
+        return paint;
     }
 
     /**
@@ -173,7 +206,6 @@ public class ProgressCircelView extends View {
      * @return
      */
     private int getDrawDegree() {
-
         if (degree * count > 270) {
             return 360 / count;
         } else {
@@ -184,14 +216,15 @@ public class ProgressCircelView extends View {
     private RectF getReact() {
         rectF = new RectF();
         length = width > height ? height : width;
-        rectF.set(Math.abs(length - width) / 2 + circelWith(),
-                Math.abs(length - height) / 2 + circelWith(),
-                Math.abs(length - width) / 2 + length - circelWith(),
-                Math.abs(length - height) / 2 + length - circelWith());
+        rectF.set(Math.abs(length - width) / 2 + getPaintTrueWidth(),
+                Math.abs(length - height) / 2 + getPaintTrueWidth(),
+                Math.abs(length - width) / 2 + length - getPaintTrueWidth(),
+                Math.abs(length - height) / 2 + length - getPaintTrueWidth());
         return rectF;
     }
 
     private int getRouteDegree() {
+        routeDegree ++;
         return routeDegree++;
     }
 
@@ -200,10 +233,29 @@ public class ProgressCircelView extends View {
      *
      * @return
      */
-    private float circelWith() {
-        return (float) ((1.0 + Math.sin(Math.PI * routeDegree / 180 / 1.5)) / 2 * length / 2 * distances + paintWith);
+    private float getPaintTrueWidth() {
+        //获取圆弧矩形的偏移距离
+        return (float) (getRouteNumber() * length / 2 * distances + paintWith);
     }
 
+    /**
+     * 获取旋转系数
+     * <p>
+     * 该系数为0到1的sin值
+     *
+     * @return
+     */
+    private float getRouteNumber() {
+        return (float) ((1.0 + Math.sin(Math.PI * routeDegree / 180))) / 2;
+    }
 
-
+    /**
+     * 获取画笔的宽度
+     *
+     * @return
+     */
+    private float getPaintWidth() {
+        //画笔的初始大小为30，变化范围为15
+        return (float) (getRouteNumber() * 60 + 30);
+    }
 }

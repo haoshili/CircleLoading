@@ -1,4 +1,4 @@
-package com.message.test.myapplication;
+package com.message.test.progresscircel;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
