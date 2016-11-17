@@ -9,19 +9,16 @@
 ![][image-1]
 
 ### 1.  绘制扇叶
----- 
-\`\`\`for (int i = 0; i \< count; i++) {  
-    setPaintColour(i);  
-    canvas.drawArc(getReact(), routeDegree + i  (360 / count),   getDrawDegree(), false, paint);  
-}
-\`\`\`\`
-\`
+ 
+	 for (int i = 0; i < count; i++) {
+	            setPaintColour(i);
+	            canvas.drawArc(getReact(), routeDegree + i * (360 / count),  getDrawDegree(), false, paint);
+	        }
 
 ### 2.扇叶旋转
----- 
 原理就是不停的调用view的`invalidate()`方法
 ### 3.改变扇叶半径大小
----- 
+因为绘制扇叶的弧线的的第一个参数就是`RectF`，而这个参数也是改变弧线半径的决定参数，所以只要这个`RectF`就可以了。
 	private RectF getReact() {
 	        rectF = new RectF();
 	        length = width > height ? height : width;
@@ -56,6 +53,26 @@
 	    private float getRouteNumber() {
 	        return (float) ((1.0 + Math.sin(Math.PI * routeDegree / 180))) / 2;
 	    }
- 
+### 5. 使用方法
+在xml中
+	<com.message.test.progresscircel.activityview.view.ProgressCircelView
+	        android:id="@+id/loading"
+	        android:layout_marginTop="30dip"
+	        android:layout_width="200dip"
+	        android:layout_height="200dip" />
+	
+	
+	    <com.message.test.progresscircel.activityview.view.ProgressCircelView
+	        android:id="@+id/loading2"
+	        android:layout_marginTop="30dip"
+	        android:layout_width="200dip"
+	        android:layout_height="200dip" />
+在activity中
+	ProgressCircelView progressCircelView = (ProgressCircelView) findViewById(R.id.loading);
+	        progressCircelView.beginRoute();
+	
+	        ProgressCircelView progressCircelView2= (ProgressCircelView) findViewById(R.id.loading2);
+	        progressCircelView2.setCount(2);
+	        progressCircelView2.beginRoute();
 
 [image-1]:	https://raw.githubusercontent.com/haoshili/CircleLoading/master/CircelLoading/previewimage.gif
