@@ -18,7 +18,8 @@
 ### 2.扇叶旋转
 原理就是不停的调用view的`invalidate()`方法
 ### 3.改变扇叶半径大小
-因为绘制扇叶的弧线的的第一个参数就是`RectF`，而这个参数也是改变弧线半径的决定参数，所以只要这个`RectF`就可以了。
+因为绘制扇叶的弧线的的第一个参数就是`RectF`，而这个参数也是改变弧线半径的决定参数，所以只要这个`RectF`就可以了。  
+  
 	private RectF getReact() {
 	        rectF = new RectF();
 	        length = width > height ? height : width;
@@ -31,7 +32,8 @@
 	  private float getPaintTrueWidth() {
 	        //获取圆弧矩形的偏移距离
 	        return (float) (getRouteNumber() * length / 2 * distances + paintWith);
-	    }
+	    }  
+
 ### 4.改变画笔宽度
 	     /**
 	     * 获取画笔的宽度
