@@ -10,16 +10,16 @@
 
 ### 1.  绘制扇叶
 ---- 
-```for (int i = 0; i < count; i++) {  
+\`\`\`for (int i = 0; i \< count; i++) {  
     setPaintColour(i);  
     canvas.drawArc(getReact(), routeDegree + i  (360 / count),   getDrawDegree(), false, paint);  
 }
-````
-`
+\`\`\`\`
+\`
 
 ### 2.扇叶旋转
 ---- 
-原理就是不停的调用view的```invalidate()```方法
+原理就是不停的调用view的`invalidate()`方法
 ### 3.改变扇叶半径大小
 ---- 
 	private RectF getReact() {
@@ -36,7 +36,7 @@
 	        return (float) (getRouteNumber() * length / 2 * distances + paintWith);
 	    }
 ### 4.改变画笔宽度
-		 /**
+	     /**
 	     * 获取画笔的宽度
 	     *
 	     * @return
@@ -45,7 +45,7 @@
 	        //画笔的初始大小为30，变化范围为15
 	        return (float) (getRouteNumber() * 60 + 30);
 	    }
-	    
+	
 	    /**
 	     * 获取旋转系数
 	     * <p>
@@ -56,6 +56,6 @@
 	    private float getRouteNumber() {
 	        return (float) ((1.0 + Math.sin(Math.PI * routeDegree / 180))) / 2;
 	    }
-	
+ 
 
 [image-1]:	https://raw.githubusercontent.com/haoshili/CircleLoading/master/CircelLoading/previewimage.gif
