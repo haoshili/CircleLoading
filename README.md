@@ -8,7 +8,7 @@
 效果图：
 ![][image-1]
 
-### 1.  绘制扇叶
+### 1.  绘制扇叶  
  
 	 for (int i = 0; i < count; i++) {
 	            setPaintColour(i);
@@ -55,6 +55,7 @@
 	    }
 ### 5. 使用方法
 在xml中  
+ 
 	<com.message.test.progresscircel.activityview.view.ProgressCircelView
 	        android:id="@+id/loading"
 	        android:layout_marginTop="30dip"
