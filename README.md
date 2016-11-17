@@ -4,7 +4,7 @@
 2. 让扇叶旋转起来  
 3. 改变扇叶半价大小  
 4. 改变画笔粗细  
-效果图：
+效果图：  
 ![priview](https://raw.githubusercontent.com/haoshili/CircleLoading/master/CircelLoading/previewimage.gif)
 
 ###1.  绘制扇叶
