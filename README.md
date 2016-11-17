@@ -54,7 +54,7 @@
 	        return (float) ((1.0 + Math.sin(Math.PI * routeDegree / 180))) / 2;
 	    }
 ### 5. 使用方法
-在xml中
+在xml中  
 	<com.message.test.progresscircel.activityview.view.ProgressCircelView
 	        android:id="@+id/loading"
 	        android:layout_marginTop="30dip"
@@ -67,7 +67,8 @@
 	        android:layout_marginTop="30dip"
 	        android:layout_width="200dip"
 	        android:layout_height="200dip" />
-在activity中
+在activity中  
+
 	ProgressCircelView progressCircelView = (ProgressCircelView) findViewById(R.id.loading);
 	        progressCircelView.beginRoute();
 	
